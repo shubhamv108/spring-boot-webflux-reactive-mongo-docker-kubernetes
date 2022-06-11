@@ -1,0 +1,66 @@
+plugins {
+	id 'org.springframework.boot' version '2.7.0'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+	id 'eclipse'
+	id 'jacoco'
+}
+
+group = 'app'
+version = '0.0.1'
+sourceCompatibility = '17'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+	all {
+		exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation (
+			'org.springframework.boot:spring-boot-starter-data-mongodb-reactive',
+			'org.springframework.boot:spring-boot-starter-webflux',
+			'de.flapdoodle.embed:de.flapdoodle.embed.mongo',
+			'org.springframework.boot:spring-boot-starter-log4j2',
+			'com.lmax:disruptor:3.3.6',
+			'org.springframework.boot:spring-boot-starter-validation',
+			'io.springfox:springfox-swagger2:3.0.0',
+			'io.springfox:springfox-swagger-ui:3.0.0',
+			'org.springframework.boot:spring-boot-starter-actuator')
+	compileOnly('org.projectlombok:lombok')
+	annotationProcessor(
+			'org.springframework.boot:spring-boot-configuration-processor',
+			'org.projectlombok:lombok')
+	testImplementation(
+			'junit:junit:4.13.2',
+			'org.springframework.boot:spring-boot-starter-test',
+			'de.flapdoodle.embed:de.flapdoodle.embed.mongo',
+			'io.projectreactor:reactor-test')
+}
+
+test {
+	useJUnitPlatform()
+	finalizedBy(tasks.jacocoTestReport)
+}
+
+jacoco {
+	toolVersion = "0.8.8"
+//	reportsDirectory.set(layout.buildDirectory.dir("./"))
+}
+
+jacocoTestReport { //Please do not change this
+	reports {
+		xml.required.set(true)
+		csv.required.set(true)
+		html.required.set(false)
+		xml.destination file("./jacoco.xml")
+		csv.destination file("./target/site/jacoco/jacoco.csv")
+	}
+}

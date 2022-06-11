@@ -1,0 +1,90 @@
+{
+	"info": {
+		"_postman_id": "fcc5929a-3a61-4b44-80bb-156255152e7f",
+		"name": "Student",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20497409"
+	},
+	"item": [
+		{
+			"name": "[PUT] Student",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"student1\",\n    \"age\": 33,\n    \"address\": \"Mumbai, India\",\n    \"subjects\": [\n        {\n            \"maths\": 98\n        },\n        {\n            \"physics\": 66\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{http}}://{{host}}/StudentDetails",
+					"protocol": "{{http}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"StudentDetails"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[GET] StudentByName",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Shubham\",\n    \"age\": 27,\n    \"address\": \"Kormanagala, Bengaluru\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/StudentDetails/getData.htm",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"StudentDetails",
+						"getData.htm"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[GET] HealthZ",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{http}}://{{host}}/healthz",
+					"protocol": "{{http}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"healthz"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
